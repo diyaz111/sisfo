@@ -12,26 +12,32 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle @yield('kategori')" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Kategori
+                    Profile
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        @foreach ($kategori as $row)
-                            <a class="dropdown-item" href="/artikel-kategori/{{$row->slug}}">{{$row->nama}}</a>
-                        @endforeach
+                        <a class="dropdown-item" href="/visimisi">Visi & Misi</a>
+                        <a class="dropdown-item" href="/struktur">Struktur Organisasi</a>
+                        <a class="dropdown-item" href="/sarana">Sarana dan Prasarana</a>
+                        <a class="dropdown-item" href="/artikel-tentang">Tentang Kami</a>
                     </div>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link @yield('gtk')" href="/gtk-ui">GTK</a>
+                </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle @yield('author')" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Author
+                    <a class="nav-link dropdown-toggle @yield('kurikulum')" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Kurikulum
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        @foreach ($author as $row)
-                            <a class="dropdown-item" href="/artikel-author/{{$row->id}}">{{$row->name}}</a>
-                        @endforeach
+                    <!-- ekstrakulikuler -->
+                    <a class="dropdown-item" href="/ekstakurikuler">Ekstakurikuler</a>
+                    <a class="dropdown-item" href="/pendaftaranSiswa">Pendaftaran Siswa/i Baru</a>
+                    <!-- register online -->
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link @yield('tentang')" href="/artikel-tentang">Tentang Kami</a>
+                    <a class="nav-link @yield('artikel')" href="/artikel-ui">Artikel</a>
                 </li>
             </ul>
             <ul class="navbar-nav my-2 my-lg-0">
@@ -45,7 +51,7 @@
                         <a class="nav-link" data-toggle="modal" data-target="#logoutModal" href="#">Logout</a>
                     </li>
                 @endrole
-                   
+
                 @else
                     <li class="nav-item">
                         <a class="nav-link" href="/login">Login</a>

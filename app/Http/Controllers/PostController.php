@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
-use RealRashid\SweetAlert\Facades\Alert; 
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PostController extends Controller
 {
@@ -32,7 +32,7 @@ class PostController extends Controller
 
         $search = '';
         if (request()->search) {
-            $post = Post::select('id', 'judul', 'sampul', 'id_kategori')->where('id_user', Auth::user()->id)->where('judul', 'LIKE', '%'. request()->search .'%')->latest()->paginate(10);
+            $post = Post::select('id', 'judul', 'sampul', 'id_kategori','konten')->where('id_user', Auth::user()->id)->where('judul', 'LIKE', '%'. request()->search .'%')->latest()->paginate(10);
             $search = request()->search;
 
             if (count($post) == 0) {
@@ -40,12 +40,12 @@ class PostController extends Controller
                     <div class="alert alert-success mt-4" role="alert">
                         Data yang anda cari tidak ada
                     </div>
-                '); 
+                ');
             }
         } else {
-            $post = Post::select('id', 'judul', 'sampul', 'id_kategori')->where('id_user', Auth::user()->id)->latest()->paginate(10);
+            $post = Post::select('id', 'judul', 'sampul', 'konten','id_kategori')->where('id_user', Auth::user()->id)->latest()->paginate(10);
         }
-       
+
         return view('admin/post/index', compact('post', 'footer', 'search'));
     }
 
@@ -172,7 +172,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-    //    
+    //
     }
 
     public function konfirmasi($id)
@@ -213,6 +213,6 @@ class PostController extends Controller
             Alert::success('Sukses', 'Post batal direkomendasikan');
             return redirect('/post');
         }
-        
+
     }
 }

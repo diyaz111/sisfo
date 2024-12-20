@@ -29,32 +29,29 @@
         </a>
         <div id="main" class="collapse @yield('main')" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item @yield('post')" href="/post">Post</a>
-            <a class="collapse-item @yield('kategori')" href="/kategori">Kategori</a>
-            <a class="collapse-item @yield('tag')" href="/tag">Tag</a>
             <a class="collapse-item @yield('banner')" href="/banner">Banner</a>
+            <a class="collapse-item @yield('tentang')" href="tentang">Tentang Kami</a>
           </div>
         </div>
       </li>
 
       @role('admin')
           <!-- Nav Item - Pages Collapse Menu -->
-          <li class="nav-item @yield('user-active')">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#user" aria-expanded="true" aria-controls="user">
-              <i class="fas fa-fw fa-users"></i>
-              <span>User</span>
-            </a>
-            <div id="user" class="collapse @yield('user')" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-              <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item @yield('penulis')" href="/penulis">Penulis</a>
-                <a class="collapse-item @yield('pembaca')" href="/pembaca">Pembaca</a>
-              </div>
-            </div>
+          <li class="nav-item @yield('gtk-active')">
+                <a class="nav-link" href="/gtk">
+                <i class="fas fa-fw fa-users"></i>
+                <span>GTK</span></a>
+          </li>
+
+          <li class="nav-item @yield('artikel-active')">
+                <a class="nav-link" href="/post">
+                <i class="fas fa-fw fa-users"></i>
+                <span>Artikel</span></a>
           </li>
       @endrole
 
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item @yield('pengaturan-active')">
+      <!-- <li class="nav-item @yield('pengaturan-active')">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pengaturan" aria-expanded="true" aria-controls="pengaturan">
           <i class="fas fa-fw fa-wrench"></i>
           <span>Pengaturan</span>
@@ -63,10 +60,9 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item @yield('logo')" href="/logo">Logo</a>
             <a class="collapse-item @yield('footer')" href="/footer">Footer</a>
-            <a class="collapse-item @yield('tentang')" href="tentang">Tentang Kami</a>
           </div>
         </div>
-      </li>
+      </li> -->
 
        <!-- Divider -->
       <hr class="sidebar-divider">

@@ -98,8 +98,7 @@
                         <th scope="col">No</th>
                         <th scope="col">Sampul</th>
                         <th scope="col">Judul</th>
-                        <th scope="col">Kategori</th>
-                        <th scope="col">Tag</th>
+                        <th scope="col">Deskripsi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -108,12 +107,7 @@
                             <th scope="row">{{$loop->iteration}}</th>
                             <td><img src="/upload/post/{{$row->sampul}}" alt="" width="80px" height="80px"></td>
                             <td>{{$row->judul}}</td>
-                            <td>{{$row->kategori->nama}}</td>
-                            <td>
-                            @foreach ($row->tag as $post_tag)
-                                <span class="badge badge-secondary">{{$post_tag->nama}}</span>
-                            @endforeach
-                            </td>
+                            <td>{!! $row->konten !!}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -125,75 +119,48 @@
            @endif
         </div>
     </div>
-    
-    {{-- kategori --}}
 
-    <div class="card border-bottom-success mt-4">
+
+    {{-- pendaftaran --}}
+
+    <div class="card border-bottom-warning mt-4">
         <div class="card-header">
-        <h6 class="m-0 font-weight-bold text-success">Kategori Hari Ini</h6>
+        <h6 class="m-0 font-weight-bold text-warning">Pendaftaran Sampai Hari Ini</h6>
         </div>
         <div class="card-body">
-           @if ($kategori->count() >= 1)
+           @if ($register->count() >= 1)
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
                         <th scope="col">No</th>
-                        <th scope="col">Kategori</th>
-                        <th scope="col">Slug</th>
+                        <th scope="col">Code Pendaftaran</th>
+                        <th scope="col">Fullname</th>
+                        <th scope="col">No Hp</th>
+                        <th scope="col">Alamat</th>
+                        <th scope="col">Tanggal</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($kategori as $row)
+                        @foreach ($register as $row)
                             <tr>
                             <th scope="row">{{$loop->iteration}}</th>
-                            <td>{{$row->nama}}</td>
-                            <td>{{$row->slug}}</td>
+                            <td>{{$row->code_pendaftaran}}</td>
+                            <td>{{$row->fullname}}</td>
+                            <td>{{$row->no_hp}}</td>
+                            <td>{{$row->alamat}}</td>
+                            <td>{{$row->created_at}}</td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
            @else
                 <div class="alert alert-info" role="alert">
-               Anda tidak memiliki kategori terbaru hari ini
+               Anda tidak memiliki banner terbaru hari ini
                 </div>
            @endif
         </div>
    </div>
-    
-    {{-- tag --}}
 
-    <div class="card border-bottom-info mt-4">
-        <div class="card-header">
-        <h6 class="m-0 font-weight-bold text-info">Tag Hari Ini</h6>
-        </div>
-        <div class="card-body">
-           @if ($tag->count() >= 1)
-                <table class="table table-hover table-bordered">
-                    <thead>
-                        <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Tag</th>
-                        <th scope="col">Slug</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($tag as $row)
-                            <tr>
-                            <th scope="row">{{$loop->iteration}}</th>
-                            <td>{{$row->nama}}</td>
-                            <td>{{$row->slug}}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-           @else
-                <div class="alert alert-info" role="alert">
-               Anda tidak memiliki tag terbaru hari ini
-                </div>
-           @endif
-        </div>
-   </div>
-    
     {{-- banner --}}
 
     <div class="card border-bottom-warning mt-4">

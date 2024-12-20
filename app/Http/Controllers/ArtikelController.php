@@ -67,7 +67,7 @@ class ArtikelController extends Controller
         $footer = $this->footer;
         $logo = Logo::select('gambar')->first();
         $kategori = Kategori::select('id')->where('slug', $slug)->firstOrFail();
-       
+
         request()->session()->forget('search');
         if (request()->search) {
             $artikel = Post::select('sampul', 'judul', 'slug', 'created_at')->where('id_kategori', $kategori->id)->where('judul', 'LIKE', '%' . request()->search . '%')->latest()->paginate(6);
@@ -86,7 +86,7 @@ class ArtikelController extends Controller
         return view('artikel/index', compact('artikel', 'kategori', 'logo', 'footer', 'kategori_dipilih', 'author', 'search'));
     }
 
-    public function tag($slug)  
+    public function tag($slug)
     {
         $footer = $this->footer;
         $logo = Logo::select('gambar')->first();
@@ -108,7 +108,7 @@ class ArtikelController extends Controller
                 request()->session()->flash('search', 'Post yang anda cari tidak ada');
             }
         }
-        
+
 
         $artikel->withPath(request()->url());
         $kategori = Kategori::select('slug', 'nama')->orderBy('nama', 'asc')->get();
@@ -165,5 +165,31 @@ class ArtikelController extends Controller
         $author_dipilih = User::select('name')->whereId($id)->firstOrFail();
         $author = User::getAdminPenulis();
         return view('artikel/index', compact('artikel', 'kategori', 'logo', 'footer', 'author_dipilih', 'author', 'search'));
+    }
+
+    public function artikelUi()
+    {
+        $footer = $this->footer;
+        $logo = Logo::select('gambar')->first();
+        $banner = Banner::select('slug', 'sampul', 'judul')->latest()->get();
+
+        request()->session()->forget('search');
+        if (request()->search) {
+            $artikel = Post::select('sampul', 'judul', 'slug', 'created_at')->where('judul', 'LIKE', '%'. request()->search .'%')->latest()->paginate(6);
+
+            if (count($artikel) == 0) {
+                request()->session()->flash('search', 'Post yang anda cari tidak ada');
+            }
+            $search = request()->search;
+        } else {
+            $artikel = Post::select('sampul', 'judul', 'slug', 'created_at')->latest()->paginate(6);
+            $search = '';
+        }
+
+        $kategori = Kategori::select('slug', 'nama')->orderBy('nama', 'asc')->get();
+        $home = true;
+        $author = User::getAdminPenulis();
+        $rekomendasi = Rekomendasi::select('id_post')->latest()->paginate(3);
+        return view('artikel-ui', compact('artikel', 'kategori', 'banner', 'logo', 'footer', 'home', 'author', 'search', 'rekomendasi'));
     }
 }

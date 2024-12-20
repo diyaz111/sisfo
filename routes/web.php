@@ -4,12 +4,15 @@ use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\BannerControler;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FooterController;
+use App\Http\Controllers\GtkController;
+use App\Http\Controllers\GtkUiContoller;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LogoController;
 use App\Http\Controllers\PembacaController;
 use App\Http\Controllers\PenulisController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RegisterOnlineController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TentangController;
 use App\Http\Controllers\UserController;
@@ -30,6 +33,14 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/pendaftaranSiswa', [RegisterOnlineController::class, 'index'])->name('kurikulum');
+Route::post('/register-online', [RegisterOnlineController::class, 'store'])->name('register.online');
+Route::get('/gtk-ui', [GtkUiContoller::class, 'index'])->name('gtk-ui');
+Route::get('/visimisi', [GtkUiContoller::class, 'visimisi'])->name('visimisi');
+Route::get('/sarana', [GtkUiContoller::class, 'sarana'])->name('sarana');
+Route::get('/struktur', [GtkUiContoller::class, 'struktur'])->name('struktur');
+Route::get('/ekstakurikuler', [GtkUiContoller::class, 'ekstakurikuler'])->name('ekstakurikuler');
+Route::get('/artikel-ui', [ArtikelController::class, 'artikelUi'])->name('artikelUi');
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
@@ -41,7 +52,7 @@ Route::get('/cek-role', function () {
     } else {
         return redirect('/');
     }
-    
+
 });
 
 Route::group(['middleware' => ['verified', 'role:admin|penulis']], function () {
@@ -57,6 +68,11 @@ Route::group(['middleware' => ['verified', 'role:admin|penulis']], function () {
     Route::resource('/tentang', TentangController::class);
 
     Route::resource('/post', PostController::class);
+    Route::resource('/gtk', GtkController::class);
+
+    Route::get('/gtk/{id}/konfirmasi', [GtkController::class, 'konfirmasi']);
+    Route::get('/gtk/{id}/delete', [GtkController::class, 'delete']);
+
     Route::get('/post/{id}/konfirmasi', [PostController::class, 'konfirmasi']);
     Route::get('/post/{id}/delete', [PostController::class, 'delete']);
     Route::get('/post/{id}/rekomendasi', [PostController::class, 'rekomendasi']);

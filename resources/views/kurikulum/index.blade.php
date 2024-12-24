@@ -78,9 +78,25 @@
                 @enderror
             </div>
 
+            <div class="mb-3">
+                <label for="asal_sekolah" class="form-label">Asal Sekolah</label>
+                <input type="text" class="form-control" id="asal_sekolah" name="asal_sekolah" required>
+                @error('asal_sekolah')
+                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="nama_orangtua" class="form-label">Nama Orang Tua</label>
+                <input type="text" class="form-control" id="nama_orangtua" name="nama_orangtua" required>
+                @error('nama_orangtua')
+                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                @enderror
+            </div>
 
             <div class="mb-3">
                 <label for="alamat" class="form-label">Alamat</label>
+
                 <textarea class="form-control" id="alamat" name="alamat" rows="3" required></textarea>
                 @error('alamat')
                     <div class="alert alert-danger mt-2">{{ $message }}</div>

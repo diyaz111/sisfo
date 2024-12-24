@@ -41,6 +41,8 @@ class RegisterOnlineController extends Controller
             'kota' => 'required',
             'agama' => 'required',
             'ttl' => 'required',
+            'asal_sekolah' => 'required',
+            'nama_orangtua' => 'required',
         ]);
 
         $code = self::generateRandomCode();
@@ -55,7 +57,9 @@ class RegisterOnlineController extends Controller
             'jenis_kelamin' => $request->jenis_kelamin,
             'kota' => $request->kota,
             'agama' => $request->agama,
-            'ttl' => $request->ttl
+            'ttl' => $request->ttl,
+            'asal_sekolah' => $request->asal_sekolah,
+            'nama_orangtua' => $request->nama_orangtua
         ]);
 
         return response()->json([

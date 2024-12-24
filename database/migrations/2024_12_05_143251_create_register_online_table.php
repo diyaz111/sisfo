@@ -15,11 +15,11 @@ class CreateRegisterOnlineTable extends Migration
     {
         Schema::create('register_online', function (Blueprint $table) {
             $table->id();
-            $table->string('code_pendaftaran');
-            $table->string('fullname');
-            $table->string('email');
-            $table->string('no_hp');
-            $table->string('alamat');
+            $table->string('code_pendaftaran', 50);
+            $table->string('fullname', 50);
+            $table->string('email', 50);
+            $table->string('no_hp', 50);
+            $table->string('alamat', 100);
             $table->timestamps();
         });
     }

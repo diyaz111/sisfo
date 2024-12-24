@@ -15,9 +15,9 @@ class CreateGtkTables extends Migration
     {
         Schema::create('gtk', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('gambar');
-            $table->string('role');
+            $table->string('nama', 50);
+            $table->string('gambar', 50);
+            $table->string('role', 50);
             $table->timestamps();
         });
     }

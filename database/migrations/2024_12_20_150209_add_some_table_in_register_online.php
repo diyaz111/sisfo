@@ -14,13 +14,13 @@ class AddSomeTableInRegisterOnline extends Migration
     public function up()
     {
         Schema::table('register_online', function (Blueprint $table) {
-            $table->string('no_un')->nullable();
-            $table->string('jenis_kelamin')->nullable();
-            $table->string('kota')->nullable();
-            $table->string('agama')->nullable();
-            $table->string('asal_sekolah')->nullable();
-            $table->string('ttl')->nullable();
-            $table->string('nama_orangtua')->nullable();
+            $table->string('no_un', 50)->nullable();
+            $table->string('jenis_kelamin', 10)->nullable();
+            $table->string('kota', 50)->nullable();
+            $table->string('agama', 10)->nullable();
+            $table->string('asal_sekolah', 100)->nullable();
+            $table->string('ttl', 25)->nullable();
+            $table->string('nama_orangtua', 50)->nullable();
         });
     }
 
